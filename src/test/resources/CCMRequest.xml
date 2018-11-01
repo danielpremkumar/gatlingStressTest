@@ -1,0 +1,17 @@
+<S:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:S="http://schemas.xmlsoap.org/soap/envelope/">
+    <env:Header />
+    <S:Body>
+        <ns0:fetchCoupon xmlns:ns0="http://ws.coupon.xccommerce.com/">
+            <lookupType>10</lookupType>
+            <couponID>0420180001</couponID>
+            <customerId>32905344</customerId>
+            <transId>76822334</transId>
+            <storeId>1000</storeId>
+            <tillId></tillId>
+            <authToken>manh:password</authToken>
+            <transStartDateTime>2018-10-16T06:34:11.084-04:00</transStartDateTime>
+            <requestDateTime>2018-10-16T06:34:11.084-04:00</requestDateTime>
+            <timeZone></timeZone>
+        </ns0:fetchCoupon>
+    </S:Body>
+</S:Envelope>
