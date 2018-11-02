@@ -25,14 +25,14 @@ class XCCPEMCall extends Simulation {
 
   object CCM {
     val ccmCalls = exec(http("XCC CCM Call Testing")
-      .get("/new-arrivals")
+      .get("/CouponManagement/CouponWS?WSDL")
       .body(ElFileBody("CCMRequest.xml"))
       .check(
         status.is(200),
         regex("soapFault").notExists
       ))
   }
-  println("Testing Gatling")
+
   val xccScenario = scenario("XCCSoapCallsSimulation").exec(PEM.pemCalls, CCM.ccmCalls)
 
   setUp(
