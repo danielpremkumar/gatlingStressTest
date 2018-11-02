@@ -17,8 +17,7 @@ class XCCPEMCall extends Simulation {
     val pemCalls = exec(http("XCC PEM Call Testing")
       .post("/PromotionEngineWebServiceWrapper/PromotionEngineWebServiceWrapper?wsdl")
       .body(ElFileBody("PEMRequest.xml"))
-      //.body(ElFileBody("C:\\Users\\drajkumar\\Documents\\gatling-charts-highcharts-bundle-3.0.0-RC4\\user-files\\simulations\\computerdatabase\\files\\PEMRequest.xml"))
-      .check(
+     .check(
         status.is(200),
         regex("soapFault").notExists
       ))
@@ -27,17 +26,16 @@ class XCCPEMCall extends Simulation {
   object CCM {
     val ccmCalls = exec(http("XCC CCM Call Testing")
       .get("/new-arrivals")
-      //.body(ElFileBody("CCMRequest.xml"))
-      //.body(ElFileBody("C:\\Users\\drajkumar\\Documents\\gatling-charts-highcharts-bundle-3.0.0-RC4\\user-files\\simulations\\computerdatabase\\files\\CCMRequest.xml"))
+      .body(ElFileBody("CCMRequest.xml"))
       .check(
         status.is(200),
         regex("soapFault").notExists
       ))
   }
+  println("Testing Gatling")
   val xccScenario = scenario("XCCSoapCallsSimulation").exec(PEM.pemCalls, CCM.ccmCalls)
 
   setUp(
-   // xccScenario.inject(atOnceUsers(300))
       xccScenario.inject(rampUsers(300) during (60 seconds)),
   ).protocols(httpProtocol)
 }

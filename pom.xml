@@ -16,8 +16,6 @@
         <scala.compat.version>2.12</scala.compat.version>
        <gatling.version>3.0.0-RC4</gatling.version>
        <gatling-plugin.version>3.0.0</gatling-plugin.version>
-        <!-- <gatling.version>2.1.7</gatling.version>
-        <gatling-plugin.version>2.1.7</gatling-plugin.version> -->
     </properties>
     <dependencies>
         <dependency>
@@ -29,7 +27,7 @@
             <groupId>io.gatling.highcharts</groupId>
             <artifactId>gatling-charts-highcharts</artifactId>
             <version>${gatling.version}</version>
-            <!--<scope>test</scope> -->
+            <scope>test</scope>
         </dependency>
     </dependencies>
     <build>
@@ -52,6 +50,14 @@
                     </jvmArgs> -->
                 </configuration>
 
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>10</source>
+                    <target>10</target>
+                </configuration>
             </plugin>
         </plugins>
     </build>
