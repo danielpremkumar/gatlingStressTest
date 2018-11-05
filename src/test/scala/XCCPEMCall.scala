@@ -1,9 +1,6 @@
-package test.scala
-
 import com.typesafe.config.ConfigFactory
 import io.gatling.core.Predef._
 import io.gatling.http.Predef._
-
 import scala.concurrent.duration._
 
 class XCCPEMCall extends Simulation {
@@ -43,9 +40,14 @@ class XCCPEMCall extends Simulation {
       ))
   }
 
-  val xccScenario = scenario("XCCSoapCallsSimulation").exec(PEM.pemCalls, CCM.ccmCalls)
+ // val xccScenario = scenario("XCCSoapCallsSimulation").exec(PEM.pemCalls, CCM.ccmCalls)
+  val xccScenario = scenario("XCCSoapCallsSimulation").exec(PEM.pemCalls)
+
+  val users = ConfigFactory.load().getInt("application.testDetails.noOfUsers")
+  val duration =  ConfigFactory.load().getString("application.testDetails.duration")
+
 
   setUp(
-      xccScenario.inject(rampUsers(1) during (1 seconds)),
+      xccScenario.inject(rampUsers(users) during (60 seconds)),
   ).protocols(httpProtocol)
 }

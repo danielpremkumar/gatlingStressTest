@@ -1,8 +1,6 @@
-package configuration
-
 import com.typesafe.config.ConfigFactory
 
-class ApplicationConfiguration {
+class ApplicationConfiguration  {
 
   val hostName = ConfigFactory.load().getString("application.pem.hostname")
   val protocol = ConfigFactory.load().getString("application.pem.protocol")

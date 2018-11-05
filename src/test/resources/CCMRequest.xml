@@ -3,7 +3,7 @@
     <S:Body>
         <ns0:fetchCoupon xmlns:ns0="http://ws.coupon.xccommerce.com/">
             <lookupType>10</lookupType>
-            <couponID>0420180001</couponID>
+            <couponID>TESTA1234</couponID>
             <customerId>32905344</customerId>
             <transId>76822334</transId>
             <storeId>1000</storeId>

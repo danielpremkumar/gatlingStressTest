@@ -1,4 +1,4 @@
-package test.scala.recordings
+package recordings
 
 import scala.concurrent.duration._
 
