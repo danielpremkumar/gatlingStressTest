@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="gatlingStressTest" target="3.5.4" />
+      <module name="gatlingStressTest" target="10" />
     </bytecodeTargetLevel>
   </component>
 </project>
