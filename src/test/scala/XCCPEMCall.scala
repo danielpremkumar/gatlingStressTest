@@ -6,8 +6,9 @@ import scala.concurrent.duration._
 
 class XCCPEMCall extends Simulation {
 
+  println("PEM Call made to this URL/server : " + pemURL)
   val httpProtocol = http
-    .baseUrl(protocol + "://" + hostName + ":" + port)
+    .baseUrl(pemURL)
     .inferHtmlResources()
     .acceptEncodingHeader("gzip,deflate")
     .contentTypeHeader("text/xml;charset=UTF-8")

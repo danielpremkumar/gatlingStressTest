@@ -2,9 +2,14 @@ import com.typesafe.config.ConfigFactory
 
 object ApplicationConfiguration  {
 
-  final val hostName = ConfigFactory.load().getString("application.pem.hostname")
-  final val protocol = ConfigFactory.load().getString("application.pem.protocol")
-  final val port = ConfigFactory.load().getString("application.pem.port")
+  final val pemHostName = ConfigFactory.load().getString("application.pem.hostname")
+  final val pemProtocol = ConfigFactory.load().getString("application.pem.protocol")
+  final val pemPort = ConfigFactory.load().getString("application.pem.port")
+  final val pemURL = pemProtocol + "://" + pemHostName + ":" + pemPort
+  final val ccmHostName = ConfigFactory.load().getString("application.ccm.hostname")
+  final val ccmProtocol = ConfigFactory.load().getString("application.ccm.protocol")
+  final val ccmPort = ConfigFactory.load().getString("application.ccm.port")
+  final val ccmURL = ccmProtocol + "://" + ccmHostName + ":" + ccmPort
   final val pemEndPointURL = ConfigFactory.load().getString("application.pem.endpointURL")
   final val pemPayLoadPath = ConfigFactory.load().getString("application.pem.payLoadPath")
   final val ccmEndPointURL = ConfigFactory.load().getString("application.ccm.endpointURL")
