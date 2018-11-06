@@ -9,7 +9,6 @@ import scala.concurrent.duration._
 
 class XCCPEMCall extends Simulation {
 
-  println("PEM Call made to this URL/server : " + pemURL)
   val httpProtocol = http
     .baseUrl(pemURL)
     .inferHtmlResources()
@@ -28,16 +27,26 @@ class XCCPEMCall extends Simulation {
   }
 
   object CCM {
-    val ccmCalls = exec(http("XCC CCM Call Testing")
+    val couponCSVFeeder = csv(ccmFeederCSVPath).circular
+    val ccmCalls =
+      feed(couponCSVFeeder)
+      .exec(http("XCC CCM Call Testing")
       .get(ccmEndPointURL)
       .body(ElFileBody(ccmPayLoadPath))
       .check(
+       // bodyString.saveAs( "RESPONSE_DATA" ),
         status.is(200),
         regex("soapFault").notExists
-      ))
+      )
+      )
   }
 
-  val xccScenario = scenario("XCCSoapCallsSimulation").exec(PEM.pemCalls, CCM.ccmCalls)
+  val xccScenario = scenario("XCCSoapCallsSimulation").exec( PEM.pemCalls, CCM.ccmCalls)
+//    .exec( session => {
+//    println( "Some Restful Service:" )
+//    println( session( "RESPONSE_DATA" ).as[String] )
+//    session
+//  })
 
   setUp(
       xccScenario.inject(rampUsers(users) during (3 seconds)),

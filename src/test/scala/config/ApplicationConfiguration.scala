@@ -1,6 +1,7 @@
 package config
 
 import com.typesafe.config.ConfigFactory
+import scala.io.Source._
 
 object ApplicationConfiguration  {
 
@@ -18,4 +19,9 @@ object ApplicationConfiguration  {
   final val ccmPayLoadPath = ConfigFactory.load().getString("application.ccm.payLoadPath")
   final val users = ConfigFactory.load().getInt("application.testDetails.noOfUsers")
   final val duration =  ConfigFactory.load().getString("application.testDetails.duration")
+  final val ccmFeederCSVPath =  ConfigFactory.load().getString("application.ccm.ccmFeederCSVPath")
+  println("ccmFeederCSVPath: " + ccmFeederCSVPath)
+//  final val ccmFeederFile = fromInputStream(getClass.getResourceAsStream(ccmFeederCSVPath)).mkString
+//  final val pemXMLFile = fromInputStream(getClass.getResourceAsStream(pemPayLoadPath)).mkString
+//  final val ccmXMLFile = fromInputStream(getClass.getResourceAsStream(ccmPayLoadPath)).mkString
 }
