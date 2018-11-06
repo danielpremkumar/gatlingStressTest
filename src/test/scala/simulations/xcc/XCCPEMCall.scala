@@ -1,6 +1,9 @@
-import ApplicationConfiguration._
+package simulations.xcc
+
+import config.ApplicationConfiguration._
 import io.gatling.core.Predef._
 import io.gatling.http.Predef._
+
 import scala.concurrent.duration._
 
 
