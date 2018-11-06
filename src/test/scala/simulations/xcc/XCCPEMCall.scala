@@ -27,6 +27,9 @@ class XCCPEMCall extends Simulation {
   }
 
   object CCM {
+    println("ccmFeederCSVPath : " + ccmFeederCSVPath)
+    println("pemPayLoadPath : " + pemPayLoadPath)
+    println("ccmPayLoadPath : " + ccmPayLoadPath)
     val couponCSVFeeder = csv(ccmFeederCSVPath).circular
     val ccmCalls =
       feed(couponCSVFeeder)
@@ -49,6 +52,15 @@ class XCCPEMCall extends Simulation {
 //  })
 
   setUp(
-      xccScenario.inject(rampUsers(users) during (3 seconds)),
-  ).protocols(httpProtocol)
+      xccScenario.inject(
+        nothingFor(5 seconds),
+     //   constantUsersPerSec(10) during (10 seconds)
+        atOnceUsers(5),
+//        incrementConcurrentUsers(incrementConcurrentUsers)
+//          .times(7)
+//          .eachLevelLasting(5 seconds)
+//          .separatedByRampsLasting(70 seconds)
+//          .startingFrom(2),
+        rampUsers(users) during (3 seconds))
+  ).protocols(httpProtocol.inferHtmlResources())
 }
