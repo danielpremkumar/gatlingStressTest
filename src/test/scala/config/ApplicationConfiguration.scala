@@ -20,8 +20,5 @@ object ApplicationConfiguration  {
   final val users = ConfigFactory.load().getInt("application.testDetails.noOfUsers")
   final val duration =  ConfigFactory.load().getString("application.testDetails.duration")
   final val ccmFeederCSVPath =  ConfigFactory.load().getString("application.ccm.ccmFeederCSVPath")
-  println("ccmFeederCSVPath: " + ccmFeederCSVPath)
-//  final val ccmFeederFile = fromInputStream(getClass.getResourceAsStream(ccmFeederCSVPath)).mkString
-//  final val pemXMLFile = fromInputStream(getClass.getResourceAsStream(pemPayLoadPath)).mkString
-//  final val ccmXMLFile = fromInputStream(getClass.getResourceAsStream(ccmPayLoadPath)).mkString
+
 }
