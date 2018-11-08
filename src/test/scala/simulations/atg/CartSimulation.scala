@@ -28,12 +28,12 @@ val cartFeeder = csv(CartFeederCSVPath).circular
       .check(checkHttpResponseCode,verifyJsonForSuccess))
   }
   def addToCart = {
-      exec(http("Add Item to Cart")
+    exec(http("Add Item to Cart")
         .post(AddToCartEndPoint)
         .formParam(Action, AddToCartAction)
-        .formParam(SkuId, "${skuId}")
-        .formParam(Quantity, "${quantity}")
-        .formParam(ProductId, "${productId}")
+        .formParam(SkuId, SkuIdTemplate)
+        .formParam(Quantity, QuantityTemplate)
+        .formParam(ProductId, ProductIdTemplate)
         .check(checkHttpResponseCode, verifyJsonForSuccess))
   }
   def addMultipleItems = {

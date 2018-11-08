@@ -7,6 +7,9 @@ object ATGConstants {
   final val Action = "Action"
   final val AddToCartAction = "QuickView.addToCart"
   final val SkuId = "skuId"
+  final val SkuIdTemplate = "${skuId}"
   final val Quantity = "quantity"
+  final val QuantityTemplate = "${quantity}"
   final val ProductId = "productId"
+  final val ProductIdTemplate ="${productId}"
 }
