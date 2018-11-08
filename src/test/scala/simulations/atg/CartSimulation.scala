@@ -1,13 +1,13 @@
 package simulations.atg
 
-import config.ApplicationConfiguration.cartFeederCSVPath
+import config.ApplicationConfiguration.CartFeederCSVPath
 import constants.ATGConstants._
 import io.gatling.core.Predef._
 import io.gatling.http.Predef._
 
 class CartSimulation extends ATGBaseSimulation {
 
-val cartFeeder = csv(cartFeederCSVPath).circular
+val cartFeeder = csv(CartFeederCSVPath).circular
   val cartScn = scenario("Cart Simulation")
     .exec(getOrderSummary)
     .pause(2)
@@ -24,16 +24,16 @@ val cartFeeder = csv(cartFeederCSVPath).circular
 
   def getOrderSummary = {
     exec(http("Fetch Order Summary")
-      .get(FETCH_ORDER_SUMMARY_ENDPOINT)
+      .get(FetchOrderSummaryEndPoint)
       .check(checkHttpResponseCode,verifyJsonForSuccess))
   }
   def addToCart = {
       exec(http("Add Item to Cart")
-        .post(ADD_TO_CART_ENDPOINT)
-        .formParam(ACTION, ADD_TO_CART_ACTION)
-        .formParam(SKU_ID, "${skuId}")
-        .formParam(QUANTITY, "${quantity}")
-        .formParam(PRODUCT_ID, "${productId}")
+        .post(AddToCartEndPoint)
+        .formParam(Action, AddToCartAction)
+        .formParam(SkuId, "${skuId}")
+        .formParam(Quantity, "${quantity}")
+        .formParam(ProductId, "${productId}")
         .check(checkHttpResponseCode, verifyJsonForSuccess))
   }
   def addMultipleItems = {
@@ -44,7 +44,7 @@ val cartFeeder = csv(cartFeederCSVPath).circular
 
   def getCartSummary = {
     exec(http("Get Cart Details")
-      .get(FETCH_CART_ITEMS_ENDPOINT)
+      .get(FetchCartItemsEndPoint)
       .check(checkHttpResponseCode,verifyJsonForSuccess))
   }
 }

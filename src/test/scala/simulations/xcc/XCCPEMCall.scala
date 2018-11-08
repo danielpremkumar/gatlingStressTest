@@ -10,7 +10,7 @@ import scala.concurrent.duration._
 class XCCPEMCall extends Simulation {
 
   val httpProtocol = http
-    .baseUrl(pemURL)
+    .baseUrl(PemURL)
     .inferHtmlResources()
     .acceptEncodingHeader("gzip,deflate")
     .contentTypeHeader("text/xml;charset=UTF-8")
@@ -18,8 +18,8 @@ class XCCPEMCall extends Simulation {
 
   object PEM {
     val pemCalls = exec(http("XCC PEM Call Testing")
-      .post(pemEndPointURL)
-      .body(ElFileBody(pemPayLoadPath))
+      .post(PemEndPointURL)
+      .body(ElFileBody(PemPayLoadPath))
      .check(
         status.is(200),
         regex("soapFault").notExists
@@ -27,15 +27,15 @@ class XCCPEMCall extends Simulation {
   }
 
   object CCM {
-    println("ccmFeederCSVPath : " + ccmFeederCSVPath)
-    println("pemPayLoadPath : " + pemPayLoadPath)
-    println("ccmPayLoadPath : " + ccmPayLoadPath)
-    val couponCSVFeeder = csv(ccmFeederCSVPath).circular
+    println("ccmFeederCSVPath : " + CcmFeederCSVPath)
+    println("pemPayLoadPath : " + PemPayLoadPath)
+    println("ccmPayLoadPath : " + CcmPayLoadPath)
+    val couponCSVFeeder = csv(CcmFeederCSVPath).circular
     val ccmCalls =
       feed(couponCSVFeeder)
       .exec(http("XCC CCM Call Testing")
-      .get(ccmEndPointURL)
-      .body(ElFileBody(ccmPayLoadPath))
+      .get(CcmEndPointURL)
+      .body(ElFileBody(CcmPayLoadPath))
       .check(
        // bodyString.saveAs( "RESPONSE_DATA" ),
         status.is(200),
@@ -61,6 +61,6 @@ class XCCPEMCall extends Simulation {
 //          .eachLevelLasting(5 seconds)
 //          .separatedByRampsLasting(70 seconds)
 //          .startingFrom(2),
-        rampUsers(users) during (3 seconds))
+        rampUsers(Users) during (3 seconds))
   ).protocols(httpProtocol.inferHtmlResources())
 }

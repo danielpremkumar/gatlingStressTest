@@ -1,6 +1,6 @@
 package simulations.atg
 
-import config.ApplicationConfiguration.atgRestServiceBaseURL
+import config.ApplicationConfiguration.AtgRestServiceBaseURL
 import io.gatling.core.Predef._
 import io.gatling.http.Predef._
 
@@ -8,7 +8,7 @@ class ATGBaseSimulation extends Simulation {
 
   def httpConf = {
     http
-      .baseUrl(atgRestServiceBaseURL)
+      .baseUrl(AtgRestServiceBaseURL)
       .header("Accept","application/json")
       //.proxy(Proxy("localhost",8888).httpsPort(8888))
   }
