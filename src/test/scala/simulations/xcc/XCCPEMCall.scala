@@ -9,7 +9,7 @@ import scala.concurrent.duration._
 
 class XCCPEMCall extends Simulation {
 
-  val httpProtocol = http
+  def httpProtocol = http
     .baseUrl(PemURL)
     .inferHtmlResources()
     .acceptEncodingHeader("gzip,deflate")
@@ -44,23 +44,26 @@ class XCCPEMCall extends Simulation {
       )
   }
 
-  val xccScenario = scenario("XCCSoapCallsSimulation").exec( PEM.pemCalls, CCM.ccmCalls)
+
+  def xccScenario = scenario("XCCSoapCallsSimulation").exec( PEM.pemCalls, CCM.ccmCalls)
 //    .exec( session => {
 //    println( "Some Restful Service:" )
 //    println( session( "RESPONSE_DATA" ).as[String] )
 //    session
 //  })
+  def xccSCN = {
+  xccScenario.inject(
+    nothingFor(5 seconds),
+    //   constantUsersPerSec(10) during (10 seconds)
+    atOnceUsers(5),
+    //        incrementConcurrentUsers(incrementConcurrentUsers)
+    //          .times(7)
+    //          .eachLevelLasting(5 seconds)
+    //          .separatedByRampsLasting(70 seconds)
+    //          .startingFrom(2),
+    rampUsers(Users) during (3 seconds))
+}
 
-  setUp(
-      xccScenario.inject(
-        nothingFor(5 seconds),
-     //   constantUsersPerSec(10) during (10 seconds)
-        atOnceUsers(5),
-//        incrementConcurrentUsers(incrementConcurrentUsers)
-//          .times(7)
-//          .eachLevelLasting(5 seconds)
-//          .separatedByRampsLasting(70 seconds)
-//          .startingFrom(2),
-        rampUsers(Users) during (3 seconds))
-  ).protocols(httpProtocol.inferHtmlResources())
+  setUp(xccSCN)
+    .protocols(httpProtocol.inferHtmlResources())
 }

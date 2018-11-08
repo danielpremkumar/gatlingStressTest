@@ -18,8 +18,9 @@ val cartFeeder = csv(CartFeederCSVPath).circular
     .pause(3)
     .exec(getOrderSummary)
 
+  def cartScenario = cartScn.inject(atOnceUsers(2))
   setUp(
-    cartScn.inject(atOnceUsers(2))
+    cartScenario
   ).protocols(httpConf)
 
   def getOrderSummary = {

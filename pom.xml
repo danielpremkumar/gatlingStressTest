@@ -39,7 +39,7 @@
                 <artifactId>gatling-maven-plugin</artifactId>
                 <version>${gatling-plugin.version}</version>
                 <configuration>
-                    <simulationClass>simulations.xcc.XCCPEMCall</simulationClass>
+                    <simulationClass>groupsimulation.GroupSimulationBuilder</simulationClass>
                 <!--    <jvmArgs>
                         <jvmArg>-Durl=http://localhost:9000</jvmArg>
                         <jvmArg>-DnumberOfUsers=10</jvmArg>

@@ -12,7 +12,7 @@ object ATGConstants {
   final val Quantity = "quantity"
   final val QuantityTemplate = "${quantity}"
   final val ProductId = "productId"
-  final val ProductIdTemplate ="${productId}"
+  final val ProductIdTemplate = "${productId}"
   final val Accept = "Accept"
   final val ApplicationJson = "application/json"
   final val Success = "success"

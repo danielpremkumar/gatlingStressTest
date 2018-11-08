@@ -11,8 +11,9 @@ class ShippingSimulation extends ATGBaseSimulation {
     .get(GetGCShippingAddressEndPoint)
     .check(checkHttpResponseCode,verifyJsonForSuccess))
 
-  setUp(
-    shippingScn.inject(atOnceUsers(2))
+  def  shippingScenario = shippingScn.inject(atOnceUsers(2))
+   setUp(
+     shippingScenario
   ).protocols(httpConf)
 
 }
