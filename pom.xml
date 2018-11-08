@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.ascena</groupId>
-    <artifactId>xcc-gatling-stress-test</artifactId>
+    <artifactId>gatling-stress-test</artifactId>
     <version>1.0-SNAPSHOT</version>
     <name>${project.artifactId}</name>
     <properties>
