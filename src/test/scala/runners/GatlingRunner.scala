@@ -2,12 +2,12 @@ package runners
 
 import io.gatling.app.Gatling
 import io.gatling.core.config.GatlingPropertiesBuilder
-import simulations.xcc.XCCPEMCall
+import simulations.atg.CartSimulation
 
-object XCCGatlingRunner {
+object GatlingRunner {
 
   def main(args: Array[String]): Unit = {
-    val simClass = classOf[XCCPEMCall].getName
+    val simClass = classOf[CartSimulation].getName
 
     val props = new GatlingPropertiesBuilder
     props.simulationClass(simClass)
