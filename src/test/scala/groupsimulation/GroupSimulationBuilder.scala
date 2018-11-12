@@ -5,7 +5,11 @@ import simulations.atg.{ATGBaseSimulation, CartSimulation, ShippingSimulation}
 
 class GroupSimulationBuilder extends ATGBaseSimulation {
 
-  setUp(new CartSimulation().cartScenario,
-        new ShippingSimulation().shippingScenario)
+  val cartScenario = new CartSimulation().cartScenario
+  val shippingScenario = new ShippingSimulation().shippingScenario
+  val scn : List[PopulationBuilder] = List(cartScenario,shippingScenario)
+
+  setUp(scn)
     .protocols(httpConf)
+
 }

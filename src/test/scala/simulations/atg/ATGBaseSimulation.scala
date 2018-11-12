@@ -25,4 +25,9 @@ class ATGBaseSimulation extends Simulation {
       .check(checkHttpResponseCode,verifyJsonForSuccess)
   }
 
+  def getProperty(propertyName: String, value: String): Unit = {
+    Option(System.getenv(propertyName))
+      .orElse(Option(System.getProperty(propertyName)))
+      .getOrElse(value)
+  }
 }
