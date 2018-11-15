@@ -61,7 +61,7 @@ class XCCPEMCall extends Simulation {
     //          .eachLevelLasting(5 seconds)
     //          .separatedByRampsLasting(70 seconds)
     //          .startingFrom(2),
-    rampUsers(Users) during (3 seconds))
+    rampUsers(12000) during (60 seconds))
 }
 
   setUp(xccSCN)
